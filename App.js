@@ -9,9 +9,10 @@ import {
   Button,
   Pressable,
 } from "react-native";
+import MyPressable from "./myPressable";
 
 export default function App() {
-  const [word, onWordChange] = useState();
+  const [definition, ondefinitionChange] = useState();
 
   return (
     <View style={styles.container}>
@@ -20,6 +21,7 @@ export default function App() {
           fontSize: 30,
           fontWeight: "900",
           alignSelf: "center",
+          letterSpacing: 2.5,
         }}
       >
         Kabbage!
@@ -27,23 +29,15 @@ export default function App() {
       <View style={styles.subcontainer}>
         {/* This view block contains everything besides Kabbage!*/}
         <Text style={styles.textSub}>Word</Text>
-        <TextInput style={styles.input} onChangeText={onWordChange} />
-        <Pressable
-          style={styles.buttonEnabled}
-          disabledStyle={styles.buttonDisabled}
-          disabled={!word}
-          onPress={processDefinition}
-        >
-          <Text>Enter</Text>
-        </Pressable>
-        {/* TODO: The 'elevation' under the styling above is specific to android and needs to be adjust for corss-platform compatibility later */}
+        <TextInput style={styles.input} onChangeText={ondefinitionChange} />
+        <MyPressable disabled={!definition} onPress={processDefinition} />
       </View>
     </View>
   );
 }
 
 function processDefinition() {
-  console.log("Word entered.");
+  console.log("definition entered.");
 }
 
 const styles = StyleSheet.create({
@@ -68,27 +62,4 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "300",
   },
-  buttonEnabled: {
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 20,
-    paddingVertical: 12,
-    paddingHorizontal: 32,
-    borderRadius: 4,
-    elevation: 3,
-    backgroundColor: "brown",
-  },
-  buttonDisabled: {
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 20,
-    paddingVertical: 12,
-    paddingHorizontal: 32,
-    borderRadius: 4,
-    elevation: 3,
-    backgroundColor: "blue",
-  },
 });
-{
-  /* TODO: The 'elevation' under the styling above is specific to android and needs to be adjust for corss-platform compatibility later */
-}
