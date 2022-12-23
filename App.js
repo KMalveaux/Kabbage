@@ -6,8 +6,9 @@ import {
   TextInput,
   View,
   TouchableOpacity,
+  Button,
+  Pressable,
 } from "react-native";
-import MyButton from "./myButton";
 
 export default function App() {
   const [word, onWordChange] = useState();
@@ -27,29 +28,22 @@ export default function App() {
         {/* This view block contains everything besides Kabbage!*/}
         <Text style={styles.textSub}>Word</Text>
         <TextInput style={styles.input} onChangeText={onWordChange} />
-        <TouchableOpacity
-          style={{
-            alignSelf: "center",
-            height: "20%",
-            width: "50%",
-            backgroundColor: "#398640",
-            justifyContent: "center",
-            borderRadius: 30,
-            marginTop: 20,
-            elevation: 5,
-          }}
+        <Pressable
+          style={styles.buttonEnabled}
+          disabledStyle={styles.buttonDisabled}
           disabled={!word}
+          onPress={processDefinition}
         >
-          {/* The 'elevation' under the styling above is specific to android and needs to be adjust for corss-platform compatibility later */}
-          <Text
-            style={{ alignSelf: "center", fontSize: 40, fontWeight: "500" }}
-          >
-            Enter
-          </Text>
-        </TouchableOpacity>
+          <Text>Enter</Text>
+        </Pressable>
+        {/* TODO: The 'elevation' under the styling above is specific to android and needs to be adjust for corss-platform compatibility later */}
       </View>
     </View>
   );
+}
+
+function processDefinition() {
+  console.log("Word entered.");
 }
 
 const styles = StyleSheet.create({
@@ -74,4 +68,27 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "300",
   },
+  buttonEnabled: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 20,
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: "brown",
+  },
+  buttonDisabled: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 20,
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: "blue",
+  },
 });
+{
+  /* TODO: The 'elevation' under the styling above is specific to android and needs to be adjust for corss-platform compatibility later */
+}
