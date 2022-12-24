@@ -5,6 +5,19 @@ import MyPressable from "./myPressable";
 
 export default function App() {
   const [Input, onInputChange] = useState();
+  const swingAnimation = useRef(new Animated.Value(0)).current;
+
+  const swing = () => {
+    Animated.timing(swingAnimation, {
+      toValue: 270,
+      duration: 1000,
+    }).start();
+  };
+
+  function switchToDefinition() {
+    console.log("Input entered.");
+    swing();
+  }
 
   return (
     <View style={styles.container}>
@@ -18,7 +31,7 @@ export default function App() {
       >
         Kabbage!
       </Text>
-      <Animated.View style={styles.subcontainer}>
+      <Animated.View style={[styles.subcontainer, { left: swingAnimation }]}>
         {/* This view block contains everything besides Kabbage!*/}
         <Text style={styles.textSub}>Word</Text>
       </Animated.View>
@@ -28,10 +41,6 @@ export default function App() {
       </View>
     </View>
   );
-}
-
-function switchToDefinition() {
-  console.log("Input entered.");
 }
 
 const styles = StyleSheet.create({
