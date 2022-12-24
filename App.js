@@ -1,18 +1,10 @@
 import { StatusBar } from "expo-status-bar";
-import React, { Component, useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  TouchableOpacity,
-  Button,
-  Pressable,
-} from "react-native";
+import React, { useState, useRef } from "react";
+import { StyleSheet, Text, TextInput, View, Animated } from "react-native";
 import MyPressable from "./myPressable";
 
 export default function App() {
-  const [definition, ondefinitionChange] = useState();
+  const [Input, onInputChange] = useState();
 
   return (
     <View style={styles.container}>
@@ -26,18 +18,20 @@ export default function App() {
       >
         Kabbage!
       </Text>
-      <View style={styles.subcontainer}>
+      <Animated.View style={styles.subcontainer}>
         {/* This view block contains everything besides Kabbage!*/}
         <Text style={styles.textSub}>Word</Text>
-        <TextInput style={styles.input} onChangeText={ondefinitionChange} />
-        <MyPressable disabled={!definition} onPress={processDefinition} />
+      </Animated.View>
+      <View style={styles.subcontainer}>
+        <TextInput style={styles.input} onChangeText={onInputChange} />
+        <MyPressable disabled={!Input} onPress={switchToDefinition} />
       </View>
     </View>
   );
 }
 
-function processDefinition() {
-  console.log("definition entered.");
+function switchToDefinition() {
+  console.log("Input entered.");
 }
 
 const styles = StyleSheet.create({
