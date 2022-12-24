@@ -1,16 +1,10 @@
 import { StatusBar } from "expo-status-bar";
-import React, { Component, useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  TouchableOpacity,
-} from "react-native";
-import MyButton from "./myButton";
+import React, { useState, useRef } from "react";
+import { StyleSheet, Text, TextInput, View, Animated } from "react-native";
+import MyPressable from "./myPressable";
 
 export default function App() {
-  const [word, onWordChange] = useState();
+  const [Input, onInputChange] = useState();
 
   return (
     <View style={styles.container}>
@@ -19,37 +13,25 @@ export default function App() {
           fontSize: 30,
           fontWeight: "900",
           alignSelf: "center",
+          letterSpacing: 2.5,
         }}
       >
         Kabbage!
       </Text>
-      <View style={styles.subcontainer}>
+      <Animated.View style={styles.subcontainer}>
         {/* This view block contains everything besides Kabbage!*/}
         <Text style={styles.textSub}>Word</Text>
-        <TextInput style={styles.input} onChangeText={onWordChange} />
-        <TouchableOpacity
-          style={{
-            alignSelf: "center",
-            height: "20%",
-            width: "50%",
-            backgroundColor: "#398640",
-            justifyContent: "center",
-            borderRadius: 30,
-            marginTop: 20,
-            elevation: 5,
-          }}
-          disabled={!word}
-        >
-          {/* The 'elevation' under the styling above is specific to android and needs to be adjust for corss-platform compatibility later */}
-          <Text
-            style={{ alignSelf: "center", fontSize: 40, fontWeight: "500" }}
-          >
-            Enter
-          </Text>
-        </TouchableOpacity>
+      </Animated.View>
+      <View style={styles.subcontainer}>
+        <TextInput style={styles.input} onChangeText={onInputChange} />
+        <MyPressable disabled={!Input} onPress={switchToDefinition} />
       </View>
     </View>
   );
+}
+
+function switchToDefinition() {
+  console.log("Input entered.");
 }
 
 const styles = StyleSheet.create({
