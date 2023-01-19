@@ -23,7 +23,7 @@ the go back button after supplying an input. Changeable should only flip between
 the text input is replaced with a visually identical text input that is instead assigned with the according state for that stage of card creation, i.e. "onInputChange" for
 giving an input and then "onDefinitionChange" for giving a definition.
 */
-export default function App() {
+export default function App({ navigation }) {
   const [Input, onInputChange] = useState(); // This is the first input the user gives. The "Word" to be given a defition.
   const [Definition, onDefinitionChange] = useState();
   const [changeable, setChangable] = useState("Word"); //This is the text the changes between "word" and "definition"

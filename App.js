@@ -1,18 +1,18 @@
 import React from "react";
-import { SafeAreaView, Text, StyleSheet } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Home from "./Home";
+import CardCreation from "./CardCreation";
 
-const Home = () => {
-  return (
-    <SafeAreaView style={styles.container}>
-      <Text style={{ fontSize: 300 }}>Home Screen</Text>
-    </SafeAreaView>
-  );
+const Stack = createNativeStackNavigator();
+
+const App = () => {
+  <NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="CardCreation" component={CardCreation} />
+    </Stack.Navigator>
+  </NavigationContainer>;
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
-export default Home;
+export default App;
