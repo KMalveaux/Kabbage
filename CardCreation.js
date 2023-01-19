@@ -90,7 +90,7 @@ export default function App({ navigation }) {
           letterSpacing: 2.5,
         }}
       >
-        Kabbage!
+        Card Creation
       </Text>
       <Animated.View style={[styles.subcontainer, { left: slideAnimation }]}>
         <Text style={styles.textSub}>{changeable}</Text>

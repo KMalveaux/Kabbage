@@ -5,7 +5,10 @@ const Home = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={{ fontSize: 30 }}>Home Screen</Text>
-      <Button onPress={() => navigation.navigate("CardCreation")} />
+      <Button
+        title={"Press me"}
+        onPress={() => navigation.navigate("CardCreation")}
+      />
     </SafeAreaView>
   );
 };
